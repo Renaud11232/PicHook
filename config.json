@@ -1,0 +1,13 @@
+{
+  "hook_url": "https://discordapp.com/api/webhooks/123456789/somerandomstring",
+  "directories": [
+    "/path/to/your/artworks"
+  ],
+  "cron": "0/5 * * * *",
+  "extensions": [
+    ".jpg",
+    ".jpeg",
+    ".png"
+  ],
+  "history": "history.json"
+}
