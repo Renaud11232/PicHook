@@ -114,7 +114,7 @@ class PicHook:
             except EnvironmentError:
                 self.__logger.warning("Failed to send %s, trying another file..." % file)
 
-    def save_sent_files(self):
+    def __save_sent_files(self):
         self.__logger.info("Saving sent files...")
         history = dict(
             history=list(self.__sent_files)
@@ -122,6 +122,12 @@ class PicHook:
         with open(self.__history, "w") as hist:
             json.dump(history, hist)
         self.__logger.info("Saved...")
+
+    def quit(self):
+        self.__list_lock.acquire()
+        self.__save_sent_files()
+        self.__list_lock.release()
+        sys.exit(0)
 
     def run(self):
         self.scan_files()
@@ -133,5 +139,5 @@ class PicHook:
                 pause.until(next_execution)
                 self.send_file()
         except KeyboardInterrupt:
-            self.save_sent_files()
+            self.__save_sent_files()
             self.__logger.info("Goodbye...")

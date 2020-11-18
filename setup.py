@@ -8,7 +8,7 @@ def get_long_description():
 
 setuptools.setup(
     name="PicHook",
-    version="0.1.0rc3",
+    version="0.1.0rc4",
     author="Renaud Gaspard",
     author_email="gaspardrenaud@hotmail.com",
     description="Discord hook that automatically sends your artworks",

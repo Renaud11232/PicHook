@@ -13,5 +13,5 @@ def main():
         signal.signal(signal.SIGHUP, lambda signum, frame: pic_hook.scan_files())
         signal.signal(signal.SIGUSR1, lambda signum, frame: pic_hook.send_file())
         signal.signal(signal.SIGUSR2, lambda signum, frame: pic_hook.reset_sent_files())
-        signal.signal(signal.SIGTERM, lambda signum, famre: pic_hook.save_sent_files())
+        signal.signal(signal.SIGTERM, lambda signum, frame: pic_hook.quit())
     pic_hook.run()
