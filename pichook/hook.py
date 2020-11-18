@@ -127,17 +127,14 @@ class PicHook:
         self.__list_lock.acquire()
         self.__save_sent_files()
         self.__list_lock.release()
+        self.__logger.info("Goodbye...")
         sys.exit(0)
 
     def run(self):
         self.scan_files()
         cron = croniter(self.__cron, datetime.now())
-        try:
-            while True:
-                next_execution = cron.get_next(datetime)
-                self.__logger.info("Waiting until %s", next_execution.strftime("%d/%m/%Y, %H:%M:%S"))
-                pause.until(next_execution)
-                self.send_file()
-        except KeyboardInterrupt:
-            self.__save_sent_files()
-            self.__logger.info("Goodbye...")
+        while True:
+            next_execution = cron.get_next(datetime)
+            self.__logger.info("Waiting until %s", next_execution.strftime("%d/%m/%Y, %H:%M:%S"))
+            pause.until(next_execution)
+            self.send_file()
