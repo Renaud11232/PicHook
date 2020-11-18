@@ -86,8 +86,8 @@ class PicHook:
 
     def __reset_sent_files(self):
         self.__logger.info("Resetting the list of sent files")
-        self.__sent_files.clear()
-        self.__remaining_files = self.__found_files.copy()
+        self.__remaining_files = self.__sent_files
+        self.__sent_files = set()
         self.__logger.info("Reset done")
 
     def send_file(self):
